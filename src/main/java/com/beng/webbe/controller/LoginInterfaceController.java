@@ -25,7 +25,7 @@ import java.util.Map;
 @RestController
 public class LoginInterfaceController {
     //注册
-    @RequestMapping(value = "/private-wordbook", method = RequestMethod.POST)
+    @RequestMapping(value = "/Register", method = RequestMethod.POST)
     public ResponseEntity<Map<String,String>> Register(
             @RequestParam final String user_name,@RequestParam final String user_password) {
         Map<String,String> m = new HashMap<String,String>();
@@ -34,7 +34,7 @@ public class LoginInterfaceController {
     }
 
     //登录
-    @RequestMapping(value = "/private-wordbook", method = RequestMethod.POST)
+    @RequestMapping(value = "/Login", method = RequestMethod.POST)
     public ResponseEntity<Map<String,String>> Login(
             @RequestParam final String user_name,@RequestParam final String user_password) {
         Map<String,String> m = new HashMap<String,String>();
@@ -43,7 +43,7 @@ public class LoginInterfaceController {
     }
 
     //修改密码
-    @RequestMapping(value = "/private-wordbook", method = RequestMethod.POST)
+    @RequestMapping(value = "/Update_password", method = RequestMethod.POST)
     public ResponseEntity<Map<String,String>> Update_password(
             @RequestParam final String user_name,@RequestParam final String user_password,@RequestParam final String new_user_password) {
         Map<String,String> m = new HashMap<String,String>();
