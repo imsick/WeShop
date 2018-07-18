@@ -95,6 +95,7 @@ public class LoginInterfaceController {
             if(a.get(0).getPassword().equals(user_password))
             {
                 a.get(0).setPassword(new_user_password);
+                mAccountRepo.save(a.get(0));
                 m.put("Login_result", "ok");
             }
             else
