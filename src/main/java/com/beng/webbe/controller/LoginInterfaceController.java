@@ -12,7 +12,9 @@ import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.domain.AlipayTradeAppPayModel;
 import com.alipay.api.request.AlipayTradeAppPayRequest;
 import com.alipay.api.response.AlipayTradeAppPayResponse;
+import com.beng.webbe.model.Account;
 import com.beng.webbe.model.PrivateWord;
+import com.beng.webbe.repository.AccountRepo;
 import com.beng.webbe.repository.PrivateWordbookRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,11 +32,25 @@ import java.util.Map;
  */
 @RestController
 public class LoginInterfaceController {
+    @Autowired
+    private AccountRepo mAccountRepo;
     //注册
     @RequestMapping(value = "/Register", method = RequestMethod.POST)
     public ResponseEntity<Map<String,String>> Register(
             @RequestParam final String user_name,@RequestParam final String user_password) {
         Map<String,String> m = new HashMap<String,String>();
+
+        List<Account> a = mAccountRepo.findAccountByUserName(user_name);
+        if(a.size()!=0)//用戶名已被註冊
+        {
+            m.put("Register_result","The username has been registered");
+            return new ResponseEntity<Map<String,String>>(m,HttpStatus.OK);
+        }
+
+        final Account account = new Account();
+        account.setNewAccount(user_name,user_password);
+        mAccountRepo.save(account);
+
         m.put("Register_result","ok");
         return new ResponseEntity<Map<String,String>>(m,HttpStatus.OK);
     }

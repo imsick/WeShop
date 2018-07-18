@@ -23,7 +23,7 @@ public class Account {
     @Column
     Integer money;
 
-    Account(){}
+    public Account(){}
 
     public Integer getId() {
         return id;
@@ -43,5 +43,12 @@ public class Account {
 
     public Integer getMoney() {
         return money;
+    }
+
+    public void setNewAccount(final String userName, final String password
+                           ) {
+        this.userName = userName;
+        this.password = password;
+        this.money = 0;
     }
 }
