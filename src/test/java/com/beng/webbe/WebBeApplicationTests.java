@@ -1,7 +1,10 @@
 package com.beng.webbe;
 
+import com.beng.webbe.model.ShopSetting;
+import com.beng.webbe.repository.ShopSettingRepo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -12,6 +15,9 @@ import java.util.GregorianCalendar;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class WebBeApplicationTests {
+
+    @Autowired
+    private ShopSettingRepo shopSettingRepo;
 
 	@Test
 	public void contextLoads() {
@@ -33,6 +39,13 @@ public class WebBeApplicationTests {
 		System.out.println(calendar1.after(calendar2));
 	}
 
+	@Test
+    public  void testCRUD()
+    {
+        ShopSetting shopSetting = new ShopSetting();
+        shopSetting.setSettings(0,0,0,"123",0);
+        shopSettingRepo.save(shopSetting);
+    }
 
 //	@Test
 //	public void mytest(){

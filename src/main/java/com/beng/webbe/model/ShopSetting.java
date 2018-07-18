@@ -23,9 +23,9 @@ public class ShopSetting {
     String address;
 
     @Column
-    Integer interval;
+    Integer intervalTime;
 
-    ShopSetting(){}
+    public ShopSetting(){}
 
     public Integer getAmount() {
         return amount;
@@ -43,13 +43,29 @@ public class ShopSetting {
         return userId;
     }
 
-    public Integer getInterval() {
-        return interval;
+    public Integer getIntervalTime() {
+        return intervalTime;
     }
 
     public Integer getItemId() {
         return itemId;
     }
 
+    public void setSettings(
+            Integer userId,
+            Integer itemId,
+            Integer amount,
+            String address,
+            Integer intervalTime) {
+        this.address = address;
+        this.userId=userId;
+        this.itemId=itemId;
+        this.amount=amount;
+        this.intervalTime =intervalTime;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }
 
