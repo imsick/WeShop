@@ -16,7 +16,7 @@ public class Address {
     @Column
     String address;
 
-    Address(){}
+    public Address(){}
 
     public Integer getId() {
         return id;
@@ -28,5 +28,11 @@ public class Address {
 
     public String getAddress() {
         return address;
+    }
+
+    public void addNew(Integer userId,String address)
+    {
+        this.userId=userId;
+        this.address=address;
     }
 }

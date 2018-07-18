@@ -6,8 +6,6 @@
 
 package com.beng.webbe.controller;
 
-import com.beng.webbe.model.PrivateWord;
-import com.beng.webbe.repository.PrivateWordbookRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
