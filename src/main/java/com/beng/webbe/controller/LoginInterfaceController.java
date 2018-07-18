@@ -13,9 +13,10 @@ import com.alipay.api.domain.AlipayTradeAppPayModel;
 import com.alipay.api.request.AlipayTradeAppPayRequest;
 import com.alipay.api.response.AlipayTradeAppPayResponse;
 import com.beng.webbe.model.Account;
-import com.beng.webbe.model.PrivateWord;
+
 import com.beng.webbe.repository.AccountRepo;
-import com.beng.webbe.repository.PrivateWordbookRepo;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

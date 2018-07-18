@@ -21,7 +21,6 @@ import java.util.GregorianCalendar;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class WebBeApplicationTests {
-
 	@Test
 	public void contextLoads() {
 	}
@@ -71,7 +70,6 @@ public class WebBeApplicationTests {
 //		}
 
 	}
-
 
 //	@Test
 //	public void mytest(){
