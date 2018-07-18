@@ -50,6 +50,7 @@ public class Account {
         this.userName = userName;
         this.password = password;
         this.money = 0;
+        this.tel="0";
     }
     public void setPassword(final String password)
     {
