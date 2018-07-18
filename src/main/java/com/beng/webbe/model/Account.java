@@ -51,4 +51,8 @@ public class Account {
         this.password = password;
         this.money = 0;
     }
+    public void setPassword(final String password)
+    {
+        this.password = password;
+    }
 }
