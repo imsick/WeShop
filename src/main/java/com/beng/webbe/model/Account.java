@@ -56,4 +56,8 @@ public class Account {
     {
         this.password = password;
     }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
 }
