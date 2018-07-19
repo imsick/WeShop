@@ -18,11 +18,13 @@ import com.beng.webbe.repository.AccountRepo;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +40,9 @@ public class LoginInterfaceController {
     //注册
     @RequestMapping(value = "/Register", method = RequestMethod.POST)
     public ResponseEntity<Map<String,String>> Register(
-            @RequestParam final String user_name,@RequestParam final String user_password) {
+         HttpServletRequest request) {
+        String user_name = request.getParameter("user_name");
+        String user_password  = request.getParameter("user_password");
         Map<String,String> m = new HashMap<String,String>();
 
         List<Account> a = mAccountRepo.findAccountByUserName(user_name);
@@ -57,9 +61,11 @@ public class LoginInterfaceController {
     }
 
     //登录
+
     @RequestMapping(value = "/Login", method = RequestMethod.POST)
-    public ResponseEntity<Map<String,Object>> Login(
+    public ResponseEntity<Map<String,Object>> Login(@RequestBody
             @RequestParam final String user_name,@RequestParam final String user_password) {
+        System.out.println("ggggg");
         Map<String,Object> m = new HashMap<String,Object>();
         List<Account> a = mAccountRepo.findAccountByUserName(user_name);
         if(a.size()==0)
