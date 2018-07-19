@@ -9,8 +9,11 @@ import com.alipay.api.request.AlipayTradeAppPayRequest;
 import com.alipay.api.request.AlipayTradePayRequest;
 import com.alipay.api.response.AlipayTradeAppPayResponse;
 import com.alipay.api.response.AlipayTradePayResponse;
+import com.beng.webbe.model.Address;
+import com.beng.webbe.repository.AddressRepo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -21,6 +24,10 @@ import java.util.GregorianCalendar;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class WebBeApplicationTests {
+	@Autowired
+	private AddressRepo addressRepo;
+
+
 	@Test
 	public void contextLoads() {
 	}
@@ -77,5 +84,11 @@ public class WebBeApplicationTests {
 //		System.out.println(services.encodeMD5Hex
 //				("DGFSWER145423dgfsaag2343dsDASF34dfaDFS3dsgfDFS32df423234543cvdsDFSDSFRQEW2fDS2fsdADSD21DSFFDSSDAF3222222224324234FSD"));
 //	}
-
+	@Test
+	public void testadd()
+	{
+		Address a=new Address();
+		a.addNew(2,"123");
+		addressRepo.save(a);
+	}
 }
