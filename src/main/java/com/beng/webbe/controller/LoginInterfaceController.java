@@ -45,39 +45,46 @@ public class LoginInterfaceController {
         if(a.size()!=0)//用戶名已被註冊
         {
             m.put("Register_result","The username has been registered");
-            return new ResponseEntity<Map<String,String>>(m,HttpStatus.OK);
+            return new ResponseEntity<Map<String,String>>(m,HttpStatus.valueOf(500));
         }
 
         final Account account = new Account();
         account.setNewAccount(user_name,user_password);
         mAccountRepo.save(account);
-
         m.put("Register_result","ok");
         return new ResponseEntity<Map<String,String>>(m,HttpStatus.OK);
+
     }
 
     //登录
     @RequestMapping(value = "/Login", method = RequestMethod.POST)
-    public ResponseEntity<Map<String,String>> Login(
+    public ResponseEntity<Map<String,Object>> Login(
             @RequestParam final String user_name,@RequestParam final String user_password) {
-        Map<String,String> m = new HashMap<String,String>();
+        Map<String,Object> m = new HashMap<String,Object>();
         List<Account> a = mAccountRepo.findAccountByUserName(user_name);
         if(a.size()==0)
         {
             m.put("Login_result","The username doesn't exist");
+            return new ResponseEntity<>(m, HttpStatus.valueOf(501));
         }
         else
         {
             if(a.get(0).getPassword().equals(user_password))
             {
                 m.put("Login_result", "ok");
+                m.put("id",a.get(0).getId());
+                m.put("username",a.get(0).getUserName());
+                m.put("tel",a.get(0).getTel());
+                m.put("money",a.get(0).getMoney());
+                return new ResponseEntity<>(m, HttpStatus.OK);
             }
             else
             {
                 m.put("Login_result","The password is not correct");
+                return new ResponseEntity<>(m, HttpStatus.valueOf(502));
             }
         }
-        return new ResponseEntity<Map<String, String>>(m, HttpStatus.OK);
+
     }
 
     //修改密码
@@ -89,6 +96,7 @@ public class LoginInterfaceController {
         if(a.size()==0)
         {
             m.put("Update_password_result","The username doesn't exist");
+            return new ResponseEntity<>(m, HttpStatus.valueOf(501));
         }
         else
         {
@@ -97,13 +105,15 @@ public class LoginInterfaceController {
                 a.get(0).setPassword(new_user_password);
                 mAccountRepo.save(a.get(0));
                 m.put("Update_password_result", "ok");
+                return new ResponseEntity<>(m,HttpStatus.OK);
             }
             else
             {
                 m.put("Update_password_result","The password is not correct");
+                return new ResponseEntity<>(m, HttpStatus.valueOf(502));
             }
         }
-        return new ResponseEntity<Map<String,String>>(m,HttpStatus.OK);
+
     }
 
 }

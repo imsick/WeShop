@@ -25,6 +25,10 @@ public class Account {
 
     public Account(){}
 
+    public void setMoney(Integer money) {
+        this.money = money;
+    }
+
     public Integer getId() {
         return id;
     }
