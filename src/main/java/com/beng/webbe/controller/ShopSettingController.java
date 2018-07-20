@@ -1,8 +1,10 @@
 package com.beng.webbe.controller;
 
+import com.beng.webbe.model.Account;
 import com.beng.webbe.model.Item;
 import com.beng.webbe.model.ShopHistory;
 import com.beng.webbe.model.ShopSetting;
+import com.beng.webbe.repository.AccountRepo;
 import com.beng.webbe.repository.ItemRepo;
 import com.beng.webbe.repository.ShopHistoryRepo;
 import com.beng.webbe.repository.ShopSettingRepo;
@@ -24,7 +26,8 @@ public class ShopSettingController {
     private ItemRepo itemRepo;
     @Autowired
     private ShopHistoryRepo shopHistoryRepo;
-
+    @Autowired
+    private AccountRepo accountRepo;
 
     @RequestMapping(value = "/items", method = RequestMethod.GET)
     public ResponseEntity<List<Item>> getItems()
@@ -72,6 +75,12 @@ public class ShopSettingController {
         String desc=String.format("于%s购买%s共%d件",dateString,itemRepo.getOne(shopSetting.getItemId()).getItemName(),shopSetting.getAmount());
         shopHistory.addNew(shopSetting.getUserId(),desc);
         shopHistoryRepo.save(shopHistory);
+        Item item=itemRepo.getOne(shopSetting.getItemId());
+        item.decreaseAmount(shopSetting.getAmount());
+        itemRepo.save(item);
+        Account account=accountRepo.findOneById(shopSetting.getUserId());
+        account.setMoney(account.getMoney()-item.getPrice()*shopSetting.getAmount());
+        accountRepo.save(account);
         return new ResponseEntity<>("success",HttpStatus.OK);
 //        shopHistory.addNew();
     }
