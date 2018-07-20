@@ -49,7 +49,7 @@ public class LoginInterfaceController {
         if(a.size()!=0)//用戶名已被註冊
         {
             m.put("Register_result","The username has been registered");
-            return new ResponseEntity<Map<String,String>>(m,HttpStatus.valueOf(1000));
+            return new ResponseEntity<Map<String,String>>(m,HttpStatus.OK);
         }
 
         final Account account = new Account();
@@ -72,7 +72,7 @@ public class LoginInterfaceController {
         if(a.size()==0)
         {
             m.put("Login_result","The username doesn't exist");
-            return new ResponseEntity<>(m, HttpStatus.valueOf(1001));
+            return new ResponseEntity<>(m, HttpStatus.OK);
         }
         else
         {
@@ -88,7 +88,7 @@ public class LoginInterfaceController {
             else
             {
                 m.put("Login_result","The password is not correct");
-                return new ResponseEntity<>(m, HttpStatus.valueOf(1002));
+                return new ResponseEntity<>(m, HttpStatus.OK);
             }
         }
 
@@ -106,7 +106,7 @@ public class LoginInterfaceController {
         if(a.size()==0)
         {
             m.put("Update_password_result","The username doesn't exist");
-            return new ResponseEntity<>(m, HttpStatus.valueOf(1001));
+            return new ResponseEntity<>(m, HttpStatus.OK);
         }
         else
         {
@@ -120,7 +120,7 @@ public class LoginInterfaceController {
             else
             {
                 m.put("Update_password_result","The password is not correct");
-                return new ResponseEntity<>(m, HttpStatus.valueOf(1002));
+                return new ResponseEntity<>(m, HttpStatus.OK);
             }
         }
 
