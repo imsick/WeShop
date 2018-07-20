@@ -68,9 +68,9 @@ public class WebBeApplicationTests {
 		AlipayTradeAppPayRequest request = new AlipayTradeAppPayRequest();
 //SDK已经封装掉了公共参数，这里只需要传入业务参数。以下方法为sdk的model入参方式(model和biz_content同时存在的情况下取biz_content)。
 		AlipayTradeAppPayModel model = new AlipayTradeAppPayModel();
-		model.setBody("我是测试数据");
-		model.setSubject("App支付测试Java");
-		model.setOutTradeNo("1");
+		model.setBody("test");
+		model.setSubject("test");
+		model.setOutTradeNo("31415926");
 		model.setTimeoutExpress("30m");
 		model.setTotalAmount("0.01");
 		model.setProductCode("QUICK_MSECURITY_PAY");
