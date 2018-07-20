@@ -14,10 +14,12 @@ import com.alipay.api.request.AlipayTradeAppPayRequest;
 import com.alipay.api.response.AlipayTradeAppPayResponse;
 import com.beng.webbe.model.Account;
 
+import com.beng.webbe.model.Address;
 import com.beng.webbe.model.NewAccount;
 import com.beng.webbe.repository.AccountRepo;
 
 
+import com.beng.webbe.repository.AddressRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
@@ -26,6 +28,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +41,8 @@ import java.util.Map;
 public class LoginInterfaceController {
     @Autowired
     private AccountRepo mAccountRepo;
+    @Autowired
+    private AddressRepo addressRepo;
     //注册
     @RequestMapping(value = "/Register", method = RequestMethod.POST)
     public ResponseEntity<Map<String,String>> Register(@RequestBody NewAccount na) {
@@ -83,6 +88,13 @@ public class LoginInterfaceController {
                 m.put("username",a.get(0).getUserName());
                 m.put("tel",a.get(0).getTel());
                 m.put("money",a.get(0).getMoney());
+                List<Address> l =addressRepo.findByUserId(2);
+                List<String> ss=new ArrayList<>();
+                for(Address aa:l)
+                {
+                    ss.add(aa.getAddress());
+                }
+                m.put("addresses",ss);
                 return new ResponseEntity<>(m, HttpStatus.OK);
             }
             else

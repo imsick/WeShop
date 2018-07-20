@@ -6,9 +6,13 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 public interface AddressRepo extends JpaRepository<Address, Integer> {
     @Transactional
     @Modifying
     @Query(value= "delete from addresses where user_id= ?1",nativeQuery=true)
     void deleteByUserId(Integer userId);
+
+    List<Address> findByUserId(Integer userid);
 }
