@@ -14,6 +14,7 @@ import com.alipay.api.request.AlipayTradeAppPayRequest;
 import com.alipay.api.response.AlipayTradeAppPayResponse;
 import com.beng.webbe.model.Account;
 
+import com.beng.webbe.model.NewAccount;
 import com.beng.webbe.repository.AccountRepo;
 
 
@@ -39,10 +40,9 @@ public class LoginInterfaceController {
     private AccountRepo mAccountRepo;
     //注册
     @RequestMapping(value = "/Register", method = RequestMethod.POST)
-    public ResponseEntity<Map<String,String>> Register(
-         HttpServletRequest request) {
-        String user_name = request.getParameter("user_name");
-        String user_password  = request.getParameter("user_password");
+    public ResponseEntity<Map<String,String>> Register(@RequestBody NewAccount na) {
+        String user_name = na.getUser_name();
+        String user_password  = na.getUser_password();
         Map<String,String> m = new HashMap<String,String>();
 
         List<Account> a = mAccountRepo.findAccountByUserName(user_name);
@@ -63,9 +63,10 @@ public class LoginInterfaceController {
     //登录
 
     @RequestMapping(value = "/Login", method = RequestMethod.POST)
-    public ResponseEntity<Map<String,Object>> Login(@RequestBody
-            @RequestParam final String user_name,@RequestParam final String user_password) {
-        System.out.println("ggggg");
+    public ResponseEntity<Map<String,Object>> Login(@RequestBody NewAccount na
+            ) {
+        String user_name = na.getUser_name();
+        String user_password = na.getUser_password();
         Map<String,Object> m = new HashMap<String,Object>();
         List<Account> a = mAccountRepo.findAccountByUserName(user_name);
         if(a.size()==0)
@@ -96,7 +97,10 @@ public class LoginInterfaceController {
     //修改密码
     @RequestMapping(value = "/Update_password", method = RequestMethod.POST)
     public ResponseEntity<Map<String,String>> Update_password(
-            @RequestParam final String user_name,@RequestParam final String user_password,@RequestParam final String new_user_password) {
+            @RequestBody NewAccount na) {
+        String user_name = na.getUser_name();
+        String user_password = na.getUser_password();
+        String new_user_password = na.getNew_userpassword();
         Map<String,String> m = new HashMap<String,String>();
         List<Account> a = mAccountRepo.findAccountByUserName(user_name);
         if(a.size()==0)
