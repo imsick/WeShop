@@ -18,9 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -102,9 +100,19 @@ public class WebBeApplicationTests {
 	@Test
 	public void test1()
 	{
-		Date currentTime = new Date();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String dateString = formatter.format(currentTime);
-		System.out.println(dateString);
+//		Date currentTime = new Date();
+//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		String dateString = formatter.format(currentTime);
+//		System.out.println(dateString);
+		List<Address> l =addressRepo.findByUserId(2);
+		List<String> ss=new ArrayList<>();
+		for(Address a:l)
+		{
+			ss.add(a.getAddress());
+		}
+		System.out.println(ss.size());
+
+		System.out.println(ss.get(0));
+		System.out.println(ss.get(1));
 	}
 }
