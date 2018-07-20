@@ -51,4 +51,7 @@ public class Item {
         return picturePath;
     }
 
+    public void decreaseAmount(Integer amount) {
+        this.amount -= amount;
+    }
 }
