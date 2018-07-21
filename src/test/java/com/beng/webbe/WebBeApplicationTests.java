@@ -10,7 +10,10 @@ import com.alipay.api.request.AlipayTradePayRequest;
 import com.alipay.api.response.AlipayTradeAppPayResponse;
 import com.alipay.api.response.AlipayTradePayResponse;
 import com.beng.webbe.model.Address;
+import com.beng.webbe.model.ShopHistory;
 import com.beng.webbe.repository.AddressRepo;
+import com.beng.webbe.repository.ShopHistoryRepo;
+import org.apache.tomcat.jni.Time;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +28,8 @@ import java.util.*;
 public class WebBeApplicationTests {
 	@Autowired
 	private AddressRepo addressRepo;
-
+	@Autowired
+	private ShopHistoryRepo shopHistoryRepo;
 
 	@Test
 	public void contextLoads() {
@@ -101,18 +105,38 @@ public class WebBeApplicationTests {
 	public void test1()
 	{
 //		Date currentTime = new Date();
+////		ShopHistory s=shopHistoryRepo.getOne(2);
 //		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //		String dateString = formatter.format(currentTime);
 //		System.out.println(dateString);
-		List<Address> l =addressRepo.findByUserId(2);
-		List<String> ss=new ArrayList<>();
-		for(Address a:l)
-		{
-			ss.add(a.getAddress());
-		}
-		System.out.println(ss.size());
+////		try {
+////			Thread.sleep(1000);
+////		} catch (InterruptedException e) {
+////			e.printStackTrace();
+////		}
+//		Date newTime = new Date();
+//		dateString = formatter.format(newTime);
+//		System.out.println(dateString);
+//		Date newTime1 = new Date(currentTime.getTime()+1000*2);
+//		dateString = formatter.format(newTime1);
+//		System.out.println(dateString);
+//		System.out.println(newTime1.after(newTime));
+//
+//
+////		System.out.println(s.getInfo());
+//		ShopHistory s=new ShopHistory();
+//		s.addNew(3,"test",newTime1);
+//		shopHistoryRepo.save(s);
 
-		System.out.println(ss.get(0));
-		System.out.println(ss.get(1));
+//		List<Address> l =addressRepo.findByUserId(2);
+//		List<String> ss=new ArrayList<>();
+//		for(Address a:l)
+//		{
+//			ss.add(a.getAddress());
+//		}
+//		System.out.println(ss.size());
+//
+//		System.out.println(ss.get(0));
+//		System.out.println(ss.get(1));
 	}
 }
