@@ -46,9 +46,8 @@ public class ShopSettingController {
     }
 
     @RequestMapping(value = "/shop-setting", method = RequestMethod.POST)
-    public ResponseEntity<String> addShopSetting(@RequestBody final ShopSetting shopSetting) {
-        shopSettingRepo.save(shopSetting);
-        return new ResponseEntity<>("success",HttpStatus.OK);
+    public ResponseEntity<ShopSetting> addShopSetting(@RequestBody final ShopSetting shopSetting) {
+        return new ResponseEntity<>(shopSettingRepo.save(shopSetting),HttpStatus.OK);
     }
 
     @RequestMapping(value = "/shop-setting/{id}", method = RequestMethod.PUT)
