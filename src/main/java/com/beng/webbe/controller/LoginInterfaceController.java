@@ -53,7 +53,7 @@ public class LoginInterfaceController {
         List<Account> a = mAccountRepo.findAccountByUserName(user_name);
         if(a.size()!=0)//用戶名已被註冊
         {
-            m.put("Register_result","The username has been registered");
+            m.put("Register_result","用户名已注册");
             return new ResponseEntity<Map<String,String>>(m,HttpStatus.OK);
         }
 
@@ -76,7 +76,7 @@ public class LoginInterfaceController {
         List<Account> a = mAccountRepo.findAccountByUserName(user_name);
         if(a.size()==0)
         {
-            m.put("Login_result","The username doesn't exist");
+            m.put("Login_result","用户名不存在");
             return new ResponseEntity<>(m, HttpStatus.OK);
         }
         else
@@ -88,7 +88,7 @@ public class LoginInterfaceController {
                 m.put("username",a.get(0).getUserName());
                 m.put("tel",a.get(0).getTel());
                 m.put("money",a.get(0).getMoney());
-                List<Address> l =addressRepo.findByUserId(2);
+                List<Address> l =addressRepo.findByUserId(a.get(0).getId());
                 List<String> ss=new ArrayList<>();
                 for(Address aa:l)
                 {
@@ -99,7 +99,7 @@ public class LoginInterfaceController {
             }
             else
             {
-                m.put("Login_result","The password is not correct");
+                m.put("Login_result","密码不正确");
                 return new ResponseEntity<>(m, HttpStatus.OK);
             }
         }
@@ -117,7 +117,7 @@ public class LoginInterfaceController {
         List<Account> a = mAccountRepo.findAccountByUserName(user_name);
         if(a.size()==0)
         {
-            m.put("Update_password_result","The username doesn't exist");
+            m.put("Update_password_result","用户名不存在");
             return new ResponseEntity<>(m, HttpStatus.OK);
         }
         else
@@ -131,7 +131,7 @@ public class LoginInterfaceController {
             }
             else
             {
-                m.put("Update_password_result","The password is not correct");
+                m.put("Update_password_result","密码不正确");
                 return new ResponseEntity<>(m, HttpStatus.OK);
             }
         }
