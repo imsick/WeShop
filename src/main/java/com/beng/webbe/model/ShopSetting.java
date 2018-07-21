@@ -25,6 +25,9 @@ public class ShopSetting {
     @Column
     Integer intervalTime;
 
+    @Column
+    String name;
+
     public ShopSetting(){}
 
     public Integer getAmount() {
@@ -66,6 +69,10 @@ public class ShopSetting {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 }
 

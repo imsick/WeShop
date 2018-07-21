@@ -69,13 +69,27 @@ public class ShopSettingController {
     @RequestMapping(value = "/shop",method = RequestMethod.POST)
     public ResponseEntity<String> buyItem(@RequestBody final ShopSetting shopSetting){
         ShopHistory shopHistory=new ShopHistory();
+        List<ShopHistory> historyList=shopHistoryRepo.findByUserId(shopSetting.getUserId());
+        Integer itemId=shopSetting.getItemId();
         Date currentTime = new Date();
+        for(ShopHistory sh:historyList)
+        {
+            if(sh.getItemId().equals(itemId))
+            {
+                Date limitDate=new Date(sh.getCreatedAt().getTime()+shopSetting.getIntervalTime()*1000);
+                if(currentTime.before(limitDate))
+                {
+                    return new ResponseEntity<>("距离上次购物时间过短！",HttpStatus.OK);
+                }
+            }
+        }
+
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateString = formatter.format(currentTime);
-        String desc=String.format("于%s购买%s共%d件",dateString,itemRepo.getOne(shopSetting.getItemId()).getItemName(),shopSetting.getAmount());
-        shopHistory.addNew(shopSetting.getUserId(),desc);
+        String desc=String.format("于%s购买%s共%d件",dateString,itemRepo.getOne(itemId).getItemName(),shopSetting.getAmount());
+        shopHistory.addNew(shopSetting.getUserId(),desc,currentTime,itemId);
         shopHistoryRepo.save(shopHistory);
-        Item item=itemRepo.getOne(shopSetting.getItemId());
+        Item item=itemRepo.getOne(itemId);
         item.decreaseAmount(shopSetting.getAmount());
         itemRepo.save(item);
         Account account=accountRepo.findOneById(shopSetting.getUserId());
