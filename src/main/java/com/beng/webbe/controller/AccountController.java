@@ -161,7 +161,7 @@ public class AccountController {
             address.addNew(userId,add);
             addressRepo.save(address);
         }
-        return new ResponseEntity<>(account.addresses.get(0), HttpStatus.OK);
+        return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
     @RequestMapping(value = "/balance", method = RequestMethod.GET)
