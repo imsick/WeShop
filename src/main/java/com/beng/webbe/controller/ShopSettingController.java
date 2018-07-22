@@ -71,6 +71,7 @@ public class ShopSettingController {
         List<ShopHistory> historyList=shopHistoryRepo.findByUserId(shopSetting.getUserId());
         Integer itemId=shopSetting.getItemId();
         Date currentTime = new Date();
+        Item item=itemRepo.getOne(itemId);
         for(ShopHistory sh:historyList)
         {
             if(sh.getItemId().equals(itemId))
@@ -82,17 +83,26 @@ public class ShopSettingController {
                 }
             }
         }
+        if(item.getAmount()<shopSetting.getAmount())
+        {
+            return new ResponseEntity<>("库存不足！",HttpStatus.OK);
+        }
+        Account account=accountRepo.findOneById(shopSetting.getUserId());
+        Integer newMoney=account.getMoney()-item.getPrice()*shopSetting.getAmount();
+        if(newMoney<0)
+        {
+            return new ResponseEntity<>("余额不足！",HttpStatus.OK);
+        }
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateString = formatter.format(currentTime);
         String desc=String.format("于%s购买%s共%d件",dateString,itemRepo.getOne(itemId).getItemName(),shopSetting.getAmount());
         shopHistory.addNew(shopSetting.getUserId(),desc,currentTime,itemId);
         shopHistoryRepo.save(shopHistory);
-        Item item=itemRepo.getOne(itemId);
+
         item.decreaseAmount(shopSetting.getAmount());
         itemRepo.save(item);
-        Account account=accountRepo.findOneById(shopSetting.getUserId());
-        account.setMoney(account.getMoney()-item.getPrice()*shopSetting.getAmount());
+        account.setMoney(newMoney);
         accountRepo.save(account);
         return new ResponseEntity<>("success",HttpStatus.OK);
 //        shopHistory.addNew();

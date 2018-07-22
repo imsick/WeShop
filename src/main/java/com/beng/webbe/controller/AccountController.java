@@ -169,7 +169,13 @@ public class AccountController {
         return new ResponseEntity<>(accountRepo.findOneById(userId).getMoney(), HttpStatus.OK);
     }
 
-
+    @RequestMapping(value = "/new-recharge", method = RequestMethod.POST)
+    public ResponseEntity<String> newRecharge(@RequestBody final Account account) {
+        Account origin = accountRepo.findOneById(account.getId());
+        origin.setMoney(origin.getMoney()+account.getMoney());
+        accountRepo.save(origin);
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
 
 
 
