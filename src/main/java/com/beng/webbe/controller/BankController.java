@@ -10,8 +10,10 @@ import com.alipay.api.response.AlipayTradeAppPayResponse;
 import com.beng.webbe.model.Account;
 import com.beng.webbe.model.AccountAndAddress;
 import com.beng.webbe.model.Address;
+import com.beng.webbe.model.Bank;
 import com.beng.webbe.repository.AccountRepo;
 import com.beng.webbe.repository.AddressRepo;
+import com.beng.webbe.repository.BankRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
@@ -29,14 +31,19 @@ import java.util.*;
 public class BankController {
     @Autowired
     private AccountRepo accountRepo;
+    @Autowired
+    private BankRepo bankRepo;
+
 
     @RequestMapping(value = "/bank", method = RequestMethod.GET)
     public Map<String,Object> bankShow(HttpSession session
     ) {
-
+        List<Bank> bankList=bankRepo.findAll();
         Map<String,Object> account= new HashMap<String,Object>();
-        account.put("1","123");
-        account.put("2","234");
+        for(Bank bank:bankList)
+        {
+            account.put(bank.getUserId().toString(),bank.getMoney());
+        }
 
         return account;
     }

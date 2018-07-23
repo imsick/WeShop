@@ -8,14 +8,13 @@ import com.alipay.api.domain.AlipayTradeAppPayModel;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayTradeAppPayRequest;
 import com.alipay.api.response.AlipayTradeAppPayResponse;
-import com.beng.webbe.model.Account;
+import com.beng.webbe.model.*;
 
 import com.beng.webbe.model.Account;
-import com.beng.webbe.model.AccountAndAddress;
-import com.beng.webbe.model.Address;
 
 import com.beng.webbe.repository.AccountRepo;
 import com.beng.webbe.repository.AddressRepo;
+import com.beng.webbe.repository.BankRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
@@ -38,6 +37,9 @@ import java.util.Map;
 public class AccountController {
     @Autowired
     private AccountRepo accountRepo;
+
+    @Autowired
+    private BankRepo bankRepo;
 
     private HttpRequest httpRequest;
 
@@ -171,6 +173,14 @@ public class AccountController {
 
     @RequestMapping(value = "/new-recharge", method = RequestMethod.POST)
     public ResponseEntity<String> newRecharge(@RequestBody final Account account) {
+        Bank bank = bankRepo.getOne(account.getId());
+        Integer newMoney = bank.getMoney()-account.getMoney();
+        if(newMoney<0)
+        {
+            return new ResponseEntity<>("银行存款不足！", HttpStatus.OK);
+        }
+        bank.setMoney(newMoney);
+        bankRepo.save(bank);
         Account origin = accountRepo.findOneById(account.getId());
         origin.setMoney(origin.getMoney()+account.getMoney());
         accountRepo.save(origin);
