@@ -39,32 +39,7 @@ public class WebBeApplicationTests {
 	public void testAPI()
 	{
 		AlipayClient alipayClient = new
-				DefaultAlipayClient("https://openapi.alipay.com/gateway.do", "2018071960663535", "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDFymmhgHG+8Tk6\n" +
-				"x8Q2fFw8CupvI+BEIPa4LsRZfH8xyGJhimU4f4useIipCZaRbozBGNAgd5QcohlC\n" +
-				"IEEaiseR4Q/Y5Ezq2+wGwZ1Uth604YmGtLTXxXuATnp3F1Yr6bwFPgbvTGDe0fAR\n" +
-				"8H/lrfkP6MZA45OHmeFJN4TM6p7bvi2bykN7RG3yz32ILkzi3LCn6AWlGXkZRX+i\n" +
-				"qzJsx2yUCUpH/whFIPaw3h2659ZKqPGdD4YTrc6SP5QrC1V0ovIAVsxYM6ZVYr2t\n" +
-				"bNzIyzx+ET/slMo2IaPpXHIuqzLukcVQ+Td3BU74iJQTdlVNxYENYrNduV5weqvi\n" +
-				"qaYIGPslAgMBAAECggEAMHHndXs0YQRMdC1Bzeaf4MT7rsUmxQkd5PbveMuZi+P8\n" +
-				"1M9FA5WZ7GCJeH20t2JQb2tYbttbF7hMX3nu+EVNpFlvvDwO6ud65BzAIGOLGdq0\n" +
-				"CJ5yPPdNzJtsO4cnwBG7z7zlje8zOuBI4Nv7N5JpEpB9Hp+fHvN9zqUejeJZjpCT\n" +
-				"225CW8h0mlM6is66N8khNZFzUc8MUAQ/avaHpfXGjOoBTqAr82XihPHXBfBOPwJd\n" +
-				"9gAOrniV5cdg+uMQuvYekVbdKPVixonPNDizFWEY9xGxN3ZM6vOPle/mxYfkfPqo\n" +
-				"npNE1UncYy+ze6R4dbR8JEwgntnLItcRSeQqTG9ncQKBgQDraY9IORI6yutE965F\n" +
-				"M1v0AOAT4OWzAV2wzXJR1BrwjfoKDQ6vBQytBWRhZ7tlx2mA2c/dPVMufMJhDQmU\n" +
-				"ACMp2Ehtqma07iIhpepq2Qj2VwqRDm+7R/UZP5H6YfzskekzA9wk/jcgK7k/dg44\n" +
-				"h+Lgx53sZwWr7XkdoulPDhrKuwKBgQDXFpMM9drs4DDzICQWowKKBZfYtSxXC5Wm\n" +
-				"6UkqpuB3pJNUgZj5shx8iABGYDKwME68OTuhNKa5XzaJhSis4aqwoCen2hiKonFR\n" +
-				"vgWdJ6Nsvo4cQPehwtnjwfn7cdx+Cf8tK492PBh5fAwEwcTt2cYEenUFj4K8lLSO\n" +
-				"TCrvLSCjnwKBgQDDNN0jPm/nYKyGm/teVqBBTRiCY1MVhGR0X2gUgpV0M8bK3tj2\n" +
-				"OHGyZ249dw7l7t2FgxfilR+MxNdKMs1mdFa0NCybA1n3Xh/fVv1zbFUKMFMKxbXQ\n" +
-				"znJnZVdfEDHy2WtOajz6T/LWMmuCPBq+ta9kRSKnDSae0mRENvrQGxoMUQKBgGz/\n" +
-				"562dukBorOXI2AEQwuynQPh1d+700/YuKwIOZ5q6MF+W/assc/s4AMupXIalNIF2\n" +
-				"j512TTeL5Nt0O9TA1/uCbhZGFEHNaJgAMGAgAlXNi78NvXCgikM9vi2K2i6Vale9\n" +
-				"x4onkk+eaYjPmbjfr9X9KOiUfbCLu6SRPQDQYcYJAoGBAOfdkgqm3UFjg1q73312\n" +
-				"zf4EkWuxCAw5u3Ckwe6gYISlSpzWDmPW7Xf4Ci45JCn9BXarc2wLLshIhbn3Mnk0\n" +
-				"iyN1DScx9pcVzjyapWZPNPlhtRcwoO1SqV/fUhAA3q0BQ8ezrdRRB+pZQyRIx5Hi\n" +
-				"WNaoYJr4okee0ej4X9Qm+Svt\n", "json", "utf-8",
+				DefaultAlipayClient("https://openapi.alipaydev.com/gateway.do", "2016091900545639", "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC9eF/0HNakuQBshAv9re/YEYlSei6zzDQ3BAQxbrtuIUW04fqrLF/y+krALR0FLTmpL9WdFoCuSkxAyZj/2qFFzK2mhaOohM8B0dsJXae8MQHSOQAC4TlyubMBJ8w+oDxOye7Zrd8T4IuMqBUrtkLLSjyfrqUGvhEUkfNw9Cs0NrcTsVZZY+hV8nOdisf/zb7fsC7b4f8HtiX2UxuqWK8W86OTmiFKZa9Lj7oien4IT9UcNKX6W/vGT6yKtAtdYLgcSDBFWsq68Wsi/eVaS2jeqh9SiUXIUFY2kEjDjPjg+wMVtL/JJnVh+csgTHiSdRrtE8rr7Iu5JEAB2qhhJxFBAgMBAAECggEBAIOKHbvBhbcohUXRSu3cowXz7s1m7COBYsLLNAoJoXBtAxL4TGooTZjH8buH1nzwj/aIshn0NHRMOrJEA8elRo/J8MkKQLvPMFRIGHRhJAGAWI5Vak+Vg6fFiqQDuEXGQvhEM2HG13faTafiTYhiae7u5DXMLuAGdp88ULGbop8FJxz/XVS4KFRsifqMML4W5oLMmL6MpRladwZd/WlxazB2d9BE3EWjx9hzhrg3TI4f/q0RkkTXH4/7+4GT+Z7WrwK+FPfK3yJ13vpphbkGQrielnu+Y23Pd50ZRU1VKGZeJ+QLkxebNsq9MG9HhqzqzhSEK0CzwW7CRoyVDGIJnZECgYEA6pxkHcy1HXNypdYYwhdIYuuGGGwjNP7J/H6NCkeIcAiSuyKEjCiyv7Z/39k2npZwY+g9QMgpoWn4v+k/9j8Igh6M0pR1RukrxV9K1EjP2ErNDMos5PC+8ufK2I2M8zW+f+tNh9gKnUtYPLtwoXPFFbwdu2JUfUuAt6pUjbMlKz0CgYEAzr5wvTdcHdJaF8AKPC4OIV3ivCck9nYxCKezO00LpbZXuVaS90tYk8SNl7nm4R5/DNfCCY4UsBRsmbiZIFD5yEFSjqXaRgnilQYmtoMqiIsrPDB7N1WS6+vnMH47ACbnVkVLlJTCZE0M+IBfXwaCAEzOKKv4yU3J8WUgFyPh7lUCgYBYUzJ56ZSSFuGlv3mosJ1G6IaecS+8BuRCU96DbTTXgNLE8xTVs4jAFlQEEUG36Mk9Q7Szy+eoZj4I+iZjbY2ldxzrNosEfEpHTz3bt+HP+zFBTGgkdOJejpdWecwD0Er827hfmR095Jy+mI6pqe0b5quG3VkTprY57z1P747hvQKBgDr1sK0llo2iqbLQP5r9/2WgosLJ3w6ykjVHriOhS0sM/2OJvwvrXu11RnQYvjFBQzZkaZ/T9y5oBLiqHnFK5pEnn+WygtcqhoW9ZVjzezPJjKDzqpATRX0mn54Cwcy/S4Yc6PsMmYuFNcfAxHITJwvy23BZ6u9t0cOX9VjkENCpAoGBAODLFsU1BQ0qC5vaWljzyjjwBBOmeAEzmvBzmLchQZqt7EGqts8N31/jc5t4wKLnwqhswjSz9RNdCu3/CMmbcBJxg6SkgwEfWyKITuzKWoOs9EvAAvI9PxTytGq8zWmPvmjUW6tYwP8neFZKclvd2lUW1gzgpK8nwNh48G34YSWV", "json", "utf-8",
 				"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr9b6adnev/MJfFZaVcNQo9HSZfEnYVXdhqPI24xFaz1F1gVgYjTQbwFLBnxe1AGiUSfjqxhol7GUk8X+4f4EfceLrzDh2vwd/3XYKIHSNv1iNgm+HyymHjc6v8F563Ku8UibE6cUrUSlwpoSR8PaIvsih5k7+Z1vZ/bAVOQYMEFCBwzd5nHadfquz6pZfDsAaMR6qOJ6T8XMaITGk001P/Aat0Y9ksHq6Gx1NBg05D9miHRySFGz3WC+zJicsygX0AR5DpfwGeOT1FdgnLM6gxveBipXwz3xBaBMmp2e2p+N6CMSzh4rSK4pZaDTR9sHNkHJQ2oe+md2rlfpBFpSswIDAQAB", "RSA2");
 
 		AlipayTradeAppPayRequest request = new AlipayTradeAppPayRequest();
