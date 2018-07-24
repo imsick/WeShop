@@ -103,7 +103,7 @@ public class AccountController {
         {
             if(request.getParameter("trade_status").equals("TRADE_SUCCESS")) {
                 int user_id = Integer.valueOf(request.getParameter("subject")).intValue();
-                int amount = (int)(Double.valueOf(request.getParameter("total_amount")).doubleValue()*100);
+                int amount = (int)(Double.valueOf(request.getParameter("total_amount")).doubleValue());
                 Account a = accountRepo.findOneById(user_id);
                 a.setMoney(a.getMoney()+amount);
                 accountRepo.save(a);
