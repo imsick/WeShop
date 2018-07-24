@@ -111,10 +111,17 @@ public class AccountController {
                 accountRepo.save(a);
                 return "success";
             }
+            int user_id = Integer.valueOf(request.getParameter("subject")).intValue();
+            int amount = (int)(Double.valueOf(request.getParameter("total_amount")).doubleValue());
+            Account a = accountRepo.findOneById(user_id);
+            a.setMoney(a.getMoney()+amount);
+            accountRepo.save(a);
+            System.out.println("status failed");
             return "fail";
         }
         else
         {
+            System.out.println("trade fail");
             return "fail";
         }
     }
