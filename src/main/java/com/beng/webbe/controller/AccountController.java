@@ -68,7 +68,7 @@ public class AccountController {
         try {
             //这里和普通的接口调用不同，使用的是sdkExecute
             AlipayTradeAppPayResponse response = alipayClient.sdkExecute(request);
-            System.out.println(response.getBody());//就是orderString 可以直接给客户端请求，无需再做处理。
+
             return new ResponseEntity<String>(response.getBody(), HttpStatus.OK);
         } catch (AlipayApiException e) {
             e.printStackTrace();
@@ -78,7 +78,7 @@ public class AccountController {
     @RequestMapping(value = "/rechargeAlipay", method = RequestMethod.POST)
     String getResponse(HttpServletRequest request)
     {
-        System.out.println("receive");
+
         Map<String, String> params = new HashMap<String, String>();
         Map<String, String[]> requestParams = request.getParameterMap();
         for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
@@ -92,7 +92,7 @@ public class AccountController {
         }
         boolean signVerified;
         try {
-            signVerified = AlipaySignature.rsaCheckV1(params,"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvXhf9BzWpLkAbIQL/a3v2BGJUnous8w0NwQEMW67biFFtOH6qyxf8vpKwC0dBS05qS/VnRaArkpMQMmY/9qhRcytpoWjqITPAdHbCV2nvDEB0jkAAuE5crmzASfMPqA8Tsnu2a3fE+CLjKgVK7ZCy0o8n66lBr4RFJHzcPQrNDa3E7FWWWPoVfJznYrH/82+37Au2+H/B7Yl9lMbqlivFvOjk5ohSmWvS4+6Inp+CE/VHDSl+lv7xk+sirQLXWC4HEgwRVrKuvFrIv3lWkto3qofUolFyFBWNpBIw4z44PsDFbS/ySZ1YfnLIEx4knUa7RPK6+yLuSRAAdqoYScRQQIDAQAB",  "UTF-8", "RSA2");
+            signVerified = AlipaySignature.rsaCheckV1(params,"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr9b6adnev/MJfFZaVcNQo9HSZfEnYVXdhqPI24xFaz1F1gVgYjTQbwFLBnxe1AGiUSfjqxhol7GUk8X+4f4EfceLrzDh2vwd/3XYKIHSNv1iNgm+HyymHjc6v8F563Ku8UibE6cUrUSlwpoSR8PaIvsih5k7+Z1vZ/bAVOQYMEFCBwzd5nHadfquz6pZfDsAaMR6qOJ6T8XMaITGk001P/Aat0Y9ksHq6Gx1NBg05D9miHRySFGz3WC+zJicsygX0AR5DpfwGeOT1FdgnLM6gxveBipXwz3xBaBMmp2e2p+N6CMSzh4rSK4pZaDTR9sHNkHJQ2oe+md2rlfpBFpSswIDAQAB",  "UTF-8", "RSA2");
         }
         catch (com.alipay.api.AlipayApiException e)
         {
