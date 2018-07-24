@@ -72,7 +72,7 @@ public class AccountController {
         } catch (AlipayApiException e) {
             e.printStackTrace();
         }
-        return new ResponseEntity<String>("success", HttpStatus.OK);
+        return new ResponseEntity<String>("fail", HttpStatus.OK);
     }
     @RequestMapping(value = "/rechargeAlipay", method = RequestMethod.POST)
     String getResponse(HttpServletRequest request)
