@@ -59,7 +59,7 @@ public class AccountController {
         AlipayTradeAppPayModel model = new AlipayTradeAppPayModel();
         model.setBody("test");
         model.setSubject(String.valueOf(user_id));
-        model.setOutTradeNo(new Date().toString());
+        model.setOutTradeNo(String.valueOf(new Date().getTime()));
         model.setTimeoutExpress("30m");
         model.setTotalAmount(String.valueOf(money));
         model.setProductCode("QUICK_MSECURITY_PAY");

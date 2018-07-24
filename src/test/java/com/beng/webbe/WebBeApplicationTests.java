@@ -34,7 +34,11 @@ public class WebBeApplicationTests {
 	@Test
 	public void contextLoads() {
 	}
-
+	@Test
+	public void test()
+	{
+		System.out.println(new Date().getTime());
+	}
 	@Test
 	public void testAPI()
 	{
