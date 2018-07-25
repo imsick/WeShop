@@ -55,6 +55,16 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
 
             <h2>BankInfo</h2>
+            <form action="/addBankAccout">
+                User_id:<br>
+                <input type="text" name="user_id" >
+                <br>
+                money:<br>
+                <input type="text" name="money" >
+                <br><br>
+                <input type="submit" value="Submit">
+                <br><br>
+            </form>
             <div class="table-responsive" style="padding-right: 200px">
                 <table class="table table-striped table-sm" id="1">
 

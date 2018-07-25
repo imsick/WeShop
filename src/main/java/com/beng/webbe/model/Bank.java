@@ -26,4 +26,8 @@ public class Bank {
     public void setMoney(Integer money) {
         this.money = money;
     }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 }
