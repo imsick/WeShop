@@ -146,7 +146,11 @@ public class AccountController {
 
     @RequestMapping(value = "/new-recharge", method = RequestMethod.POST)
     public ResponseEntity<String> newRecharge(@RequestBody final Account account) {
-        Bank bank = bankRepo.getOne(account.getId());
+        Bank bank = bankRepo.findBankByUserId(account.getId());
+        if(bank==null)
+        {
+            return new ResponseEntity<>("请先去银行开户！你的user_id是："+account.getId().toString(), HttpStatus.OK);
+        }
         Integer newMoney = bank.getMoney()-account.getMoney();
         if(newMoney<0)
         {
