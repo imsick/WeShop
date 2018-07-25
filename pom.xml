@@ -7,7 +7,7 @@
     <groupId>com.beng</groupId>
     <artifactId>web-be</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>web-be</name>
     <description>Demo project for Spring Boot</description>
