@@ -20,10 +20,6 @@ import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sun.rmi.runtime.Log;
-
-
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
@@ -100,14 +96,15 @@ public class AccountController {
             System.out.println("test fail");
             return "fail";
         }
-        int user_id = Integer.valueOf(request.getParameter("subject")).intValue();
-        int amount = (int)(Double.valueOf(request.getParameter("total_amount")).doubleValue());
-        Account a = accountRepo.findOneById(user_id);
-        a.setMoney(a.getMoney()+amount);
-        accountRepo.save(a);
+
         if(signVerified)
         {
             if(request.getParameter("trade_status").equals("TRADE_SUCCESS")) {
+                int user_id = Integer.valueOf(request.getParameter("subject")).intValue();
+                int amount = (int)(Double.valueOf(request.getParameter("total_amount")).doubleValue());
+                Account a = accountRepo.findOneById(user_id);
+                a.setMoney(a.getMoney()+amount);
+                accountRepo.save(a);
                System.out.println("success");
                 return "success";
             }
